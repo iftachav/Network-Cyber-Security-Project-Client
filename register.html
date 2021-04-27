@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>REST Client</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .container {
+      height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+    label,
+    input[type="submit"] {
+      margin-top: 20px;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h1>Register</h1>
+      </h1>
+      <form>
+        <label>User Name</label>
+        <input id="name" />
+        <label>Email:</label>
+        <input id="email" />
+        <label>Password</label>
+        <input id="password" />
+        <input type="submit" value="Register"/>
+        <!-- <input type="submit" value="GetAllUsers"/> -->
+      </form>
+      <!-- <div class="result">Click Add!</div> -->
+    </div>
+    <script>
+      document.addEventListener("submit", sendData);
+      function sendData(e) {
+        e.preventDefault();
+        const usname = document.querySelector("#name").value;
+        const mail = document.querySelector("#email").value;
+        const passwd = document.querySelector("#password").value;
+
+
+        const Http = new XMLHttpRequest();
+		const url='https://network-cyber-security.herokuapp.com/GetAllUsers';
+		
+        fetch("https://network-cyber-security.herokuapp.com/Register", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "Connection":"keep-alive",
+          },
+          body: JSON.stringify({
+            password: passwd,
+            username: usname,
+            email: mail
+          })
+        })
+          .then(res => res.json())
+          .then(data => console.log(data))
+          .catch(err => console.log(err));
+      }
+
+		var myHeaders = new Headers();
+		myHeaders.append("Content-Type", "application/json");
+
+		var requestOptions = {
+		  method: 'GET',
+		  headers: myHeaders,
+		  redirect: 'follow'
+		};
+
+		// fetch("https://network-cyber-security.herokuapp.com/Login/Pelled/Pelled@1", requestOptions)
+		//   .then(response => response.text())
+		//   .then(result => console.log(result))
+		//   .catch(error => console.log('error', error));
+
+
+      // document.addEventListener("get_users", sendData);
+      // function sendData(e) {
+      //   e.preventDefault();
+
+      //   fetch("https://network-cyber-security.herokuapp.com/GetAllUsers", {
+      //     method: "GET",
+      //     headers: {
+      //       Accept: "application/json",
+      //       "Content-Type": "application/json",
+      //       "Connection":"keep-alive",
+      //       'Access-Control-Allow-Origin':'*'
+      //     }
+      //    })
+      //     .then(res => res.json())
+      //     .then(data => console.log(data))
+      //     .catch(err => console.log(err));
+      // }
+    </script>
+  </body>
+</html>
