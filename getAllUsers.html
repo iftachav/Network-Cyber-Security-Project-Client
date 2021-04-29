@@ -13,7 +13,15 @@
     }
     table, th, td {
   border: 1px solid black;
+}
+table {border-collapse:collapse; table-layout:fixed; width:80%; position:fixed; top:0;}
+table td {word-wrap:break-word; text-align: center;}
+}
+table {
 
+  position:fixed;
+  left:0;
+  top:0;
 }
 /*table {
   border-collapse: collapse;
@@ -37,8 +45,14 @@
     }
   </style>
   <body>
+    <center>
     <div class="container">
       <table class="table table-stripped">
+        <colgroup>
+           <col span="1" style="width: 15%;">
+           <col span="1" style="width: 15%;">
+           <col span="1" style="width: 70%;">
+        </colgroup>
         <thead>
           <tr>
             <th> Username </th>
@@ -51,6 +65,7 @@
         </tbody>
       </table>
       </div>
+      </center>
     <script>
   //     document.addEventListener("submit", sendData);
   //     function sendData(e) {
