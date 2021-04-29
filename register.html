@@ -67,7 +67,8 @@
       <!-- <div class="result">Click Add!</div> -->
     </div>
     <script>
-      document.addEventListener("w3-btn w3-brown", sendData);
+      document.getElementByClassName("w3-btn w3-brown").addEventListener("click", sendData);
+
       function sendData(e) {
         console.log("im sending data")
 
