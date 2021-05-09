@@ -1,1 +1,1 @@
-<?php include_once("getAllUsers.html"); ?>
+<?php include_once("login.html"); ?>
