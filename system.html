@@ -99,15 +99,15 @@ body {
     <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a href="login.html">Login</a>
-  <a href="register.html">Register</a>
   <a href="getAllUsers.html">Users</a>
+  <a href="system.html">System</a>
   <a href="#">Clients</a>
   <a href="changePassword.html">Change Password</a>
   <a href="forgotPassword.html">Forgot Password</a>
 </div>
-
+<div>
 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
-
+</div>
 <script>
 function openNav() {
   document.getElementById("mySidenav").style.width = "250px";
@@ -117,70 +117,74 @@ function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
 }
 </script>
-    <center>
-      <h1 style="font-family:Comic Sans Ms;padding: 40pt; font-size:40pt;text-align="center"; 
+    <div class="container">
+<h1 style="font-family:Comic Sans Ms; padding: 40pt; font-size:40pt;text-align="center";
 color:#00FF00;>
 System
-</h1>
-    <div id="content" class="container">
-     <table class="table table-stripped">
-        <colgroup>
-           <col span="1" style="width: 15%;">
-           <col span="1" style="width: 15%;">
-           <col span="1" style="width: 70%;">
-        </colgroup>
-        <thead>
-          <tr>
-            <th> Username </th>
-            <th> Email </th>
-            <th> Password </th>
-            </tr>
-        </thead>
-        <tbody id="data">
-          
-        </tbody>
-      </table>
-      </div>
-    
-      </center>
+</h1> 
+<h2>Create new user</h2>    
+      <form>
+        <label>User Name</label>
+        <input id="name" />
+        <label>Email:</label>
+        <input id="email" />
+        <label>Password</label>
+        <input id="password" />
+        <input type="submit" value="Create"/>
+        <!-- <input type="submit" value="GetAllUsers"/> -->
+      </form>
+      <h2>Delete user</h2>
+      <form>
+        <label>User Name</label>
+        <input id="d-user" />
+        <input type="submit" value="Delete"/>
+      </form>
+      <!-- <div class="result">Click Add!</div> -->
+    </div>
     <script>
-  //     document.addEventListener("submit", sendData);
-  //     function sendData(e) {
-  //       e.preventDefault();
-  //       const usname = document.querySelector("#name").value;
-  //       const mail = document.querySelector("#email").value;
-  //       const passwd = document.querySelector("#password").value;
-
-
-  //       const Http = new XMLHttpRequest();
-		// const url='https://network-cyber-security.herokuapp.com/GetAllUsers';
-		
-        fetch("https://network-cyber-security.herokuapp.com/GetAllUsers", {
-          method: "GET",
+      document.addEventListener("submit", sendData);
+      function deleteUser(e) {
+        e.preventDefault;
+        const username = document.querySelector("#d-user")
+        const Http = new XMLHttpRequest();
+        fetch("https://network-cyber-security.herokuapp.com/DeleteUser/"+username, {
+          method: "DELETE",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
             "Connection":"keep-alive",
           },
-        })
-          .then(res => res.json().then(
-            data => {
-              console.log(data);
-              if(data.length > 0){
-                var temp = "";
-                data.forEach((u)=>{
-                  temp += "<tr>";
-                  temp += "<td>" + u.username + "</td>";
-                  temp += "<td>" + u.email + "</td>";
-                  temp += "<td>" + u.password + "</td></tr>";
+          body:username
+      }).then(data => console.log(data))
+          .catch(err => console.log(err));}
 
-                })
-                document.getElementById("data").innerHTML = temp;
-              }
-            }))
+      function sendData(e) {
+        e.preventDefault();
+        const usname = document.querySelector("#name").value;
+        const mail = document.querySelector("#email").value;
+        const passwd = document.querySelector("#password").value;
+
+
+        const Http = new XMLHttpRequest();
+		const url='https://network-cyber-security.herokuapp.com/GetAllUsers';
+		
+        fetch("https://network-cyber-security.herokuapp.com/Register", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "Connection":"keep-alive",
+          },
+          body: JSON.stringify({
+            password: passwd,
+            username: usname,
+            email: mail
+          })
+        })
+          .then(res => res.json())
           .then(data => console.log(data))
           .catch(err => console.log(err));
-      // }
+      }
 
 		var myHeaders = new Headers();
 		myHeaders.append("Content-Type", "application/json");
