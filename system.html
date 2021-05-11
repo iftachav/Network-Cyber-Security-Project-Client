@@ -131,7 +131,6 @@ System
         <label>Password</label>
         <input id="password" />
         <input type="submit" value="Create"/>
-        <!-- <input type="submit" value="GetAllUsers"/> -->
       </form>
       <h2>Delete user</h2>
       <form>
@@ -139,7 +138,6 @@ System
         <input id="d-user" />
         <input type="submit" value="Delete"/>
       </form>
-      <!-- <div class="result">Click Add!</div> -->
     </div>
     <script>
       document.addEventListener("submit", sendData);
@@ -195,29 +193,6 @@ System
 		  redirect: 'follow'
 		};
 
-		// fetch("https://network-cyber-security.herokuapp.com/Login/Pelled/Pelled@1", requestOptions)
-		//   .then(response => response.text())
-		//   .then(result => console.log(result))
-		//   .catch(error => console.log('error', error));
-
-
-      // document.addEventListener("get_users", sendData);
-      // function sendData(e) {
-      //   e.preventDefault();
-
-      //   fetch("https://network-cyber-security.herokuapp.com/GetAllUsers", {
-      //     method: "GET",
-      //     headers: {
-      //       Accept: "application/json",
-      //       "Content-Type": "application/json",
-      //       "Connection":"keep-alive",
-      //       'Access-Control-Allow-Origin':'*'
-      //     }
-      //    })
-      //     .then(res => res.json())
-      //     .then(data => console.log(data))
-      //     .catch(err => console.log(err));
-      // }
     </script>
   </body>
 </html>
