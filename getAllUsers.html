@@ -125,15 +125,19 @@ Users
     <div id="content" class="container">
      <table class="table table-stripped">
         <colgroup>
-           <col span="1" style="width: 15%;">
-           <col span="1" style="width: 15%;">
-           <col span="1" style="width: 70%;">
+           <col span="1" style="width: 20%;">
+           <col span="1" style="width: 20%;">
+           <col span="1" style="width: 20%;">
+           <col span="1" style="width: 20%;">
+           <col span="1" style="width: 20%;">
         </colgroup>
         <thead>
           <tr>
             <th> Username </th>
             <th> Email </th>
-            <th> Password </th>
+            <th> Try Count </th>
+            <th> Last Try </th>
+            <th> Is Active </th>
             </tr>
         </thead>
         <tbody id="data">
@@ -155,6 +159,8 @@ Users
   //       const Http = new XMLHttpRequest();
 		// const url='https://network-cyber-security.herokuapp.com/GetAllUsers';
 		
+//fetch("https://network-cyber-security.herokuapp.com/GetAllUsers", {
+
         fetch("https://network-cyber-security.herokuapp.com/GetAllUsers", {
           method: "GET",
           headers: {
@@ -172,7 +178,9 @@ Users
                   temp += "<tr>";
                   temp += "<td>" + u.username + "</td>";
                   temp += "<td>" + u.email + "</td>";
-                  temp += "<td>" + u.password + "</td></tr>";
+                  temp += "<td>" + u.try_count + "</td>";
+                  temp += "<td>" + u.last_try + "</td>";
+                  temp += "<td>" + u.is_active + "</td></tr>";
 
                 })
                 document.getElementById("data").innerHTML = temp;
