@@ -194,11 +194,11 @@ Clients List
           if(data.length > 0){
             var temp = "";
             data.forEach((c)=>{
-                if(c.name != 'session_stealer1337'){
+                // if(c.name != 'session_stealer1337'){
               temp += "<tr>";
               temp += "<td>" + c.name + "</td>";
               temp += "<td>"  + "<img src= "+c.image +" width= 75 height=75 ></td></tr>"
-          }
+          // }
             })
             document.getElementById("data").innerHTML = temp;
           }
