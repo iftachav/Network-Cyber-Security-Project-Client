@@ -1,132 +1,201 @@
 <html>
+
 <head>
-<title>
-Login
-</title>
+  <title>
+    Login
+  </title>
 </head>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: "Lato", sans-serif;
+  }
+
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+
+  @media screen and (max-height: 450px) {
+    .sidenav {
+      padding-top: 15px;
     }
-body {
-  font-family: "Lato", sans-serif;
-}
 
-.sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
-
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
+    .sidenav a {
+      font-size: 18px;
+    }
+  }
 </style>
+
 <body>
   <div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="register.html">Register</a>
-  <a href="getAllUsers.html">Users</a>
-  <a href="system.html">System</a>
-  <a href="#">Clients</a>
-  <a href="changePassword.html">Change Password</a>
-  <a href="forgotPassword.html">Forgot Password</a>
-</div>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="register.html">Register</a>
+    <a href="getAllUsers.html">Users</a>
+    <a href="system.html">System</a>
+    <a href="#">Clients</a>
+    <a href="changePassword.html">Change Password</a>
+    <a href="forgotPassword.html">Forgot Password</a>
+  </div>
 
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
 
-<script>
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
+  <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+  </script>
+  <center>
+
+
+    <h1 style="font-family:Comic Sans Ms; padding: 40pt; font-size:40pt; text-align=" center"; color:#00FF00;>
+      Login
+    </h1>
+
+    <form>
+      <label for="usname">Username:</label>
+      <input type="text" id="usname" name="usname"><br><br>
+      <label for="passwd">Password:</label>
+      <input type="password" id="passwd"><br><br>
+      <input type="checkbox" onclick="showPass()">
+      <span>Show Password</span><br><br>
+      <input type="button" value="Login" onclick="check()">
+    </form>
+    <a href="forgotPassword.html">Forgot your password ?</a>
+    <p id="text">
+    </p>
+    <button id="test" onclick="moveTo()">i will move you</button>
+    <script language="javascript">
+
+function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
 }
 
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-}
-</script>
-    <center>
-    
+  showPass = () => {
+      var x = document.getElementById("passwd");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
 
-<h1 style="font-family:Comic Sans Ms; padding: 40pt; font-size:40pt; text-align="center"; 
-color:#00FF00;>
-Login
-</h1>
+    }
+      document.addEventListener("submit", check);
 
-<form >
-  <label for="usname">Username:</label>
-  <input type="text" id="usname" name="usname"><br><br>
-  <label for="passwd">Password:</label>
-  <input type="text" id="passwd" name="passwd"><br><br>
-  <input type="button" value="Login" onclick="check()">
-</form>
-<a href="forgotPassword.html">Forgot your password ?</a>
-<p id="text">
-  
-</p>
-<script language="javascript">
-document.addEventListener("submit", check);
-function check()/*function to check userid & password*/
-{
 
-var name = document.getElementById("usname").value;
-var pass = document.getElementById("passwd").value;
-if(!pass || !name){
-  document.getElementById("text").innerHTML = "Name or password cannot be empty !";
-}else{
-// console.log( +", "+ );
-  fetch("https://network-cyber-security.herokuapp.com/Login/"+name+"/"+pass, {
-            method: "GET",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-              "Connection":"keep-alive",
-            },
+
+      checkSessionId = (data) => {
+          const flag = true;
+          const usernme = data.SESSIONID;
+          const sessionId = data.username;
+          fetch('https://network-cyber-security.herokuapp.com/CheckSession', {
+                method: "POST",
+                headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+                  "Connection": "keep-alive",
+                },
+                body: JSON.stringify({
+                  username: usernme,
+                  sessionId: sessionId
           })
-            .then(res => res.json().then(
-              data => {
-                console.log(res);
-                console.log(data);
-                
-                if(res.status == 200)
-                  document.getElementById("text").innerHTML = "Login successfully !"; 
-                else
-                  document.getElementById("text").innerHTML = "Password/Username is invalid."; })) .then(data =>
-console.log(data)) .catch(err => console.log(err)); }
+
+              }) .then(flag = true)
+              .catch(flag = false)
+              
+              return flag;
+            }
+
+              function check() /*function to check userid & password*/ {
+
+                var name = document.getElementById("usname").value;
+                var pass = document.getElementById("passwd").value;
+                if (!pass || !name) {
+                  document.getElementById("text").innerHTML = "Name or password cannot be empty !";
+                } else {
+                  fetch("https://network-cyber-security.herokuapp.com/Login/" + name + "/" + pass, {
+                      method: "GET",
+                      headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                        "Connection": "keep-alive",
+                      },
+                    })
+                    .then(res => res.json().then(
+                      data => {
+                        console.log(res);
+                        console.log(data);
+
+                        if (res.status == 200) {
+                          document.getElementById("text").innerHTML = "Login successfully !";
+                          setCookie("name", data.username, 7);
+                          setCookie('SessionID', data.sessionId, 7);
+                          window.location.href = "https://network-cyber-security.herokuapp.com/System";
+
+                        } else
+                          document.getElementById("text").innerHTML = "Password/Username is invalid.";
+                      })).then(data =>
+                      console.log(data)).catch(err => console.log(err));
+                }
 
 
-}
-</script>
-</center>
+              }
+    </script>
+  </center>
 </body>
+
 </html>
