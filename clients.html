@@ -163,9 +163,9 @@ Clients List
                         "Connection": "keep-alive",
                       },
                 body: JSON.stringify({
-                  username: "arad11",
+                  username: getCookie("name"),
                   check_session:"true",
-                  SESSIONID: "lb6dpaa7lbstoya4ty6gnwau94"
+                  SESSIONID: getCookie("sessionid")
           })
                     })
                     .then(res => res.json().then(

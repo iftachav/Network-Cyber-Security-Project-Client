@@ -150,9 +150,9 @@ function getCookie(name) {
                   "Connection": "keep-alive",
                 },
                 body: JSON.stringify({
-                  username: usernme,
+                  username: getCookie("name"),
                   check_session:"true",
-                  SESSIONID: sessionId
+                  SESSIONID: getCookie("sessionid")
           })
 
               }) .then(flag = true)
