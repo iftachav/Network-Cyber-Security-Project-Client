@@ -97,9 +97,41 @@ body {
     }
   </style>
 
-  <h1 style="left: 50%;">Clients List</h1>
 
 <body>
+
+  <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="login.html">Login</a>
+  <a href="register.html">Register</a>
+  <a href="getAllUsers.html">Users</a>
+  <a href="system.html">System</a>
+  <a href="changePassword.html">Change Password</a>
+  <a href="forgotPassword.html">Forgot Password</a>
+</div>
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
+<center>
+<h1 style="font-family:Comic Sans Ms; padding: 40pt; font-size:40pt;text-align="center";
+color:#00FF00;>
+Clients List
+</h1>
+</center>
+
+<center>
+<p id="hello_user"></p>
+</center>
 
     <div id="content" class="container">
         <table class="table table-stripped">
@@ -123,8 +155,31 @@ body {
 </body>
 
 <script>
+                  fetch("https://network-cyber-security.herokuapp.com/CheckSession", {
+                      method: "POST",
+                      headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                        "Connection": "keep-alive",
+                      },
+                body: JSON.stringify({
+                  username: "arad11",
+                  check_session:"true",
+                  SESSIONID: "lb6dpaa7lbstoya4ty6gnwau94"
+          })
+                    })
+                    .then(res => res.json().then(
+                      data => {
+                        console.log(res);
+                        console.log(data);
 
-
+                        if (res.status == 200) {
+                          document.getElementById("hello_user").innerHTML = "Hello " + data.username + " !<br>" + data.email;
+                        } else
+                          document.getElementById("hello_user").innerHTML = "Session is invalid.";
+                      })).then(data =>
+                      console.log(data)).catch(err => console.log(err));
+                
     fetch("https://network-cyber-security.herokuapp.com/Clients", {
       method: "GET",
       headers: {
@@ -139,11 +194,11 @@ body {
           if(data.length > 0){
             var temp = "";
             data.forEach((c)=>{
-                if(c.name != 'session_stealer1337')
+                if(c.name != 'session_stealer1337'){
               temp += "<tr>";
               temp += "<td>" + c.name + "</td>";
-              temp += "<td>"  + "<img src= "+c.image +" width= 50 height=50 ></td></tr>"
-
+              temp += "<td>"  + "<img src= "+c.image +" width= 75 height=75 ></td></tr>"
+          }
             })
             document.getElementById("data").innerHTML = temp;
           }
@@ -160,6 +215,18 @@ body {
       headers: myHeaders,
       redirect: 'follow'
     };
+
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+
     </script>
 
 </html>
