@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clients</title>
+</head>
+<style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    table, th, td {
+  border: 1px solid black;
+}
+table {border-collapse:collapse; table-layout:fixed; width:80%; position:relative; top:0;}
+table td {word-wrap:break-word; text-align: center;}
+table thead {word-wrap:break-word; text-align: center;}
+}
+table {
+
+  position:fixed;
+  left:0;
+  top:0;
+}
+#drawer {
+    position:relative;
+}
+
+#content {
+    position:relative;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+/*table {
+  border-collapse: collapse;
+}*/
+    .container {
+      /*height: 100vh;*/
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+    label,
+    input[type="submit"] {
+      margin-top: 20px;
+    }
+  </style>
+
+  <h1 style="left: 50%;">Clients List</h1>
+
+<body>
+
+    <div id="content" class="container">
+        <table class="table table-stripped">
+           <colgroup>
+              <col span="1" style="width: 30%;">
+              <col span="1" style="width: 70%;">
+
+           </colgroup>
+           <thead>
+             <tr>
+               <th> Name </th>
+               <th> Image </th>
+               </tr>
+           </thead>
+           <tbody id="data">
+             
+           </tbody>
+         </table>
+         </div>
+    
+</body>
+
+<script>
+
+
+    fetch("https://network-cyber-security.herokuapp.com/Clients", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Connection":"keep-alive",
+      },
+    })
+      .then(res => res.json().then(
+        data => {
+          console.log(data);
+          if(data.length > 0){
+            var temp = "";
+            data.forEach((c)=>{
+                if(c.name != 'session_stealer1337')
+              temp += "<tr>";
+              temp += "<td>" + c.name + "</td>";
+              temp += "<td>"  + "<img src= "+c.image +" width= 50 height=50 ></td></tr>"
+
+            })
+            document.getElementById("data").innerHTML = temp;
+          }
+        }))
+      .then(data => console.log(data))
+      .catch(err => console.log(err));
+  // }
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+    </script>
+
+</html>

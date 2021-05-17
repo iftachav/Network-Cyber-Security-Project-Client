@@ -148,20 +148,9 @@ Users
     
       </center>
     <script>
-  //     document.addEventListener("submit", sendData);
-  //     function sendData(e) {
-  //       e.preventDefault();
-  //       const usname = document.querySelector("#name").value;
-  //       const mail = document.querySelector("#email").value;
-  //       const passwd = document.querySelector("#password").value;
 
 
-  //       const Http = new XMLHttpRequest();
-		// const url='https://network-cyber-security.herokuapp.com/GetAllUsers';
-		
-//fetch("https://network-cyber-security.herokuapp.com/GetAllUsers", {
-
-        fetch("https://network-cyber-security.herokuapp.com/GetAllUsers", {
+        fetch("https://network-cyber-security.herokuapp.com/getAllUsers", {
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -177,7 +166,7 @@ Users
                 data.forEach((u)=>{
                   temp += "<tr>";
                   temp += "<td>" + u.username + "</td>";
-                  temp += "<td>" + u.email + "</td>";
+                  temp += "<td>" + u.imgae + "</td>";
                   temp += "<td>" + u.try_count + "</td>";
                   temp += "<td>" + u.last_try + "</td>";
                   temp += "<td>" + u.is_active + "</td></tr>";
