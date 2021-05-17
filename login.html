@@ -150,7 +150,7 @@ function getCookie(name) {
                   "Connection": "keep-alive",
                 },
                 body: JSON.stringify({
-                  username: getCookie("name"),
+                  username: getCookie("username"),
                   check_session:"true",
                   SESSIONID: getCookie("sessionid")
           })
@@ -183,7 +183,7 @@ function getCookie(name) {
 
                         if (res.status == 200) {
                           document.getElementById("text").innerHTML = "Login successfully !";
-                          setCookie("name", data.username, 7);
+                          setCookie("username", data.username, 7);
                           setCookie('sessionid', data.SESSIONID, 7);
                           window.location.href = "system.html";
 
