@@ -96,6 +96,33 @@ body {
     }
   </style>
   <body>
+    <script>
+       fetch("https://network-cyber-security.herokuapp.com/CheckSession", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Connection": "keep-alive",
+      },
+      body: JSON.stringify({
+        username: getCookie("username"),
+        check_session: "true",
+        SESSIONID: getCookie("sessionid")
+      })
+    })
+    .then(res => res.json()
+    .then(data => {
+        console.log(res);
+        console.log(data);
+
+        if (res.status == 200) 
+          document.getElementById("hello_user").innerHTML = "Hello " + data.username + " !<br>" + data.email;
+        else 
+          window.location.href = "no-access.html";
+
+    }))
+
+    </script>
     <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a href="login.html">Login</a>
@@ -141,22 +168,10 @@ System
       </form>
     </div>
     <script>
+     
     	
       document.addEventListener("submit", sendData);
-      // function deleteUser(e) {
-      //   e.preventDefault;
-      //   const username = document.querySelector("#d-user")
-      //   const Http = new XMLHttpRequest();
-      //   fetch("https://network-cyber-security.herokuapp.com/DeleteUser/"+username, {
-      //     method: "DELETE",
-      //     headers: {
-      //       Accept: "application/json",
-      //       "Content-Type": "application/json",
-      //       "Connection":"keep-alive",
-      //     },
-      //     body:username
-      // }).then(data => console.log(data))
-      //     .catch(err => console.log(err));}
+
 
       function sendData(e) {
         e.preventDefault();
@@ -169,8 +184,7 @@ System
         // const image = document.querySelector("#imageUrl").value;
         
 		// image = image.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;").replace(sl, "&#31;");
- 
-		
+
         fetch("https://network-cyber-security.herokuapp.com/Client", {
           method: "POST",
           headers: {
