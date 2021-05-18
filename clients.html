@@ -200,9 +200,10 @@ Clients List
                             }))
                           .then(data => console.log(data))
                           .catch(err => console.log(err));
-                        } else
+                        } else{
                           document.getElementById("hello_user").innerHTML = "Session is invalid.";
                           window.location.href = "no-access.html"
+                        }
                       })).then(data =>
                       console.log(data)).catch(err => console.log(err));
                 
