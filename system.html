@@ -137,8 +137,8 @@ body {
     <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a href="login.html">Login</a>
+  <a href="register.html">Register</a>
   <a href="getAllUsers.html">Users</a>
-  <a href="system.html">System</a>
   <a href="clients.html">Clients</a>
   <a href="changePassword.html">Change Password</a>
   <a href="forgotPassword.html">Forgot Password</a>
@@ -171,11 +171,6 @@ System
         <input type="submit" value="Add"/>
       </form>
       <div id="text"></div>
-     <!--  <h2>Delete client (Do we want that?)</h2>
-      <form>
-        <label>Client Name:</label>
-        <input id="dClientName" />
-        <input type="submit" value="Delete"/> -->
       </form>
     </div>
     <script>
@@ -195,7 +190,8 @@ System
         // const image = document.querySelector("#imageUrl").value;
         
 		// image = image.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;").replace(sl, "&#31;");
-
+        console.log(clName)
+       if(clName !== ""){
         fetch("https://network-cyber-security.herokuapp.com/Client", {
           method: "POST",
           headers: {
@@ -209,11 +205,21 @@ System
             image: image
           })
         })
-          .then(res => res.json())
+          .then(res => res.json()
           .then(data =>{console.log(data);
-            document.getElementById("text").innerHTML = clName+" added successfully!"; })
-          .catch(err =>{console.log(err); document.getElementById("text").innerHTML = clName+" did not added successfully!"; });
-      }
+            if( res.status == 200)
+            document.getElementById("text").innerHTML = clName+" added successfully!"; 
+            else
+            document.getElementById("text").innerHTML = "client wasnt added!";
+          })
+          .catch(err =>{console.log(err); document.getElementById("text").innerHTML = clName+" did not added successfully!"; }));
+        }
+        else{
+          document.getElementById("text").innerHTML = "Please enter user name!!";
+          
+        }
+        }
+
 
 		var myHeaders = new Headers();
 		myHeaders.append("Content-Type", "application/json");
