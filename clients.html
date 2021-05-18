@@ -175,36 +175,38 @@ Clients List
 
                         if (res.status == 200) {
                           document.getElementById("hello_user").innerHTML = "Hello " + data.username + " !<br>" + data.email;
+                           fetch("https://network-cyber-security.herokuapp.com/Clients", {
+                          method: "GET",
+                          headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json",
+                            "Connection":"keep-alive",
+                          },
+                        })
+                          .then(res => res.json().then(
+                            data => {
+                              console.log(data);
+                              if(data.length > 0){
+                                var temp = "";
+                                data.forEach((c)=>{
+                                    // if(c.name != 'session_stealer1337'){
+                                  temp += "<tr>";
+                                  temp += "<td>" + c.name + "</td>";
+                                  temp += "<td>"  + "<img src= "+c.image +" width= 75 height=75 ></td></tr>"
+                              // }
+                                })
+                                document.getElementById("data").innerHTML = temp;
+                              }
+                            }))
+                          .then(data => console.log(data))
+                          .catch(err => console.log(err));
                         } else
                           document.getElementById("hello_user").innerHTML = "Session is invalid.";
+                          window.location.href = "no-access.html"
                       })).then(data =>
                       console.log(data)).catch(err => console.log(err));
                 
-    fetch("https://network-cyber-security.herokuapp.com/Clients", {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "Connection":"keep-alive",
-      },
-    })
-      .then(res => res.json().then(
-        data => {
-          console.log(data);
-          if(data.length > 0){
-            var temp = "";
-            data.forEach((c)=>{
-                // if(c.name != 'session_stealer1337'){
-              temp += "<tr>";
-              temp += "<td>" + c.name + "</td>";
-              temp += "<td>"  + "<img src= "+c.image +" width= 75 height=75 ></td></tr>"
-          // }
-            })
-            document.getElementById("data").innerHTML = temp;
-          }
-        }))
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
+   
   // }
 
     var myHeaders = new Headers();
