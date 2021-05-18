@@ -150,7 +150,7 @@ Users
     <script>
 
 
-        fetch("https://network-cyber-security.herokuapp.com/getAllUsers", {
+        fetch("https://network-cyber-security.herokuapp.com/GetAllUsers", {
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -179,14 +179,14 @@ Users
           .catch(err => console.log(err));
       // }
 
-		var myHeaders = new Headers();
-		myHeaders.append("Content-Type", "application/json");
+		// var myHeaders = new Headers();
+		// myHeaders.append("Content-Type", "application/json");
 
-		var requestOptions = {
-		  method: 'GET',
-		  headers: myHeaders,
-		  redirect: 'follow'
-		};
+		// var requestOptions = {
+		//   method: 'GET',
+		//   headers: myHeaders,
+		//   redirect: 'follow'
+		// };
 
 		// fetch("https://network-cyber-security.herokuapp.com/Login/Pelled/Pelled@1", requestOptions)
 		//   .then(response => response.text())
