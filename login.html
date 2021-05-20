@@ -171,13 +171,17 @@ function getCookie(name) {
                 if (!pass || !name) {
                   document.getElementById("text").innerHTML = "Name or password cannot be empty !";
                 } else {
-                  fetch("https://network-cyber-security.herokuapp.com/Login/" + name + "/" + pass, {
-                      method: "GET",
+                  fetch("https://network-cyber-security.herokuapp.com/Login", {
+                      method: "POST",
                       headers: {
                         Accept: "application/json",
                         "Content-Type": "application/json",
                         "Connection": "keep-alive",
                       },
+                    body: JSON.stringify({
+                      password: pass,
+                      username: name,
+                    })
                     })
                     .then(res => res.json().then(
                       data => {
@@ -191,9 +195,9 @@ function getCookie(name) {
                           window.location.href = "system.html";
 
                         } else
-                          document.getElementById("text").innerHTML = "Password/Username is invalid.";
+                          document.getElementById("text").innerHTML = "Password/Username is invalid.<br>"+data.error.message;
                       })).then(data =>
-                      console.log(data)).catch(err => console.log(err));
+                      console.log(data)).catch(err => {console.log(err); document.getElementById("text").innerHTML += err.message;});
                 }
 
 
