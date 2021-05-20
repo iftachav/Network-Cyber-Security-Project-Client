@@ -124,6 +124,12 @@
     </form>
     <!-- <div class="result">Click Add!</div> -->
   </div>
+
+  <center>
+    <p id="status"></p>
+  </center>
+
+  <center> Move to <a href="login.html"> login. </a> </center>
   <script>
     showPass = () => {
       var x = document.getElementById("password");
@@ -159,9 +165,17 @@
             email: mail
           })
         })
-        .then(res => res.json())
-        .then(data => console.log(data))
-        .catch(err => console.log(err));
+        .then(res => res.json()
+          .then(data => {
+            console.log(data);
+            if (res.status == 200)
+              document.getElementById("status").innerHTML = data.username + " account was created successfully!";
+            // remove comment and show pretty error message
+            // else         
+            //   document.getElementById("status").innerHTML = "Account did not create, try again </br>" + data.error.message;
+             
+          }))
+        .catch(err => console.log(err))
     }
 
     var myHeaders = new Headers();
@@ -172,7 +186,6 @@
       headers: myHeaders,
       redirect: 'follow'
     };
-
   </script>
 </body>
 
