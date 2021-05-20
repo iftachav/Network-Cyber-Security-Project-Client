@@ -165,11 +165,11 @@ System
 
         // uncomment to protect from xss
 		var lt = /</g, gt = />/g, ap = /'/g, ic = /"/g, sl = /\\/g;
-        const image = document.querySelector("#imageUrl").value.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;").replace(sl, "&#31;");;
-        // const image = document.querySelector("#imageUrl").value;
+  		const image = document.querySelector("#imageUrl").value.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;").replace(sl, "&#31;");;
         
-		// image = image.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;").replace(sl, "&#31;");
- 
+        // uncomment to allow xss
+        // const image = document.querySelector("#imageUrl").value;
+         
 		
         fetch("https://network-cyber-security.herokuapp.com/Client", {
           method: "POST",
