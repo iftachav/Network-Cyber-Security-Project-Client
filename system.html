@@ -219,7 +219,7 @@ System
             if( res.status == 200)
             document.getElementById("text").innerHTML = clName+" added successfully!"; 
             else
-            document.getElementById("text").innerHTML = "client wasnt added!";
+            document.getElementById("text").innerHTML = clName+" wasnt added!";
           })
           .catch(err =>{console.log(err); document.getElementById("text").innerHTML = clName+" did not added successfully!"; }));
         }
