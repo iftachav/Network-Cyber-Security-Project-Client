@@ -188,7 +188,7 @@ System
         var lt = /</g, gt = />/g, ap = /'/g, ic = /"/g, sl = /\\/g;
         const clName = document.querySelector("#clientName").value.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;").replace(sl, "&#31;");
         const accountNum = document.querySelector("#accountNum").value;
-
+        console.log("account : " + accountNum);
         // uncomment to protect from xss
 		
   		const image = document.querySelector("#imageUrl").value.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;").replace(sl, "&#31;");
