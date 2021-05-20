@@ -159,7 +159,10 @@ function closeNav() {
 <h1 style="font-family:Comic Sans Ms; padding: 40pt; font-size:40pt;text-align="center";
 color:#00FF00;>
 System
-</h1> 
+</h1>
+   <center>
+    <p id="hello_user"></p>
+  </center> 
 <h2>Add new client</h2>    
       <form>
         <label>Client Name:</label>
@@ -173,9 +176,7 @@ System
       <div id="text"></div>
       </form>
     </div>
-    <center>
-    <p id="hello_user"></p>
-  </center>
+
     <script>
      
     	
@@ -184,12 +185,13 @@ System
 
       function sendData(e) {
         e.preventDefault();
-        const clName = document.querySelector("#clientName").value;
+        var lt = /</g, gt = />/g, ap = /'/g, ic = /"/g, sl = /\\/g;
+        const clName = document.querySelector("#clientName").value.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;").replace(sl, "&#31;");
         const accountNum = document.querySelector("#accountNum").value;
 
         // uncomment to protect from xss
-		var lt = /</g, gt = />/g, ap = /'/g, ic = /"/g, sl = /\\/g;
-  		const image = document.querySelector("#imageUrl").value.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;").replace(sl, "&#31;");;
+		
+  		const image = document.querySelector("#imageUrl").value.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;").replace(sl, "&#31;");
         
         // uncomment to allow xss
         // const image = document.querySelector("#imageUrl").value;
