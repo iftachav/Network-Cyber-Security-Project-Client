@@ -148,9 +148,9 @@
       const mail = document.querySelector("#email").value;
       const passwd = document.querySelector("#password").value;
 
-
-      const Http = new XMLHttpRequest();
-      const url = 'https://network-cyber-security.herokuapp.com/GetAllUsers';
+      if (!passwd || !usname || !mail) {
+                  document.getElementById("text").innerHTML = "Name/password/email cannot be empty !";
+                } else {
 
       fetch("https://network-cyber-security.herokuapp.com/Register", {
           method: "POST",
@@ -176,6 +176,7 @@
              
           }))
         .catch(err => console.log(err))
+      }
     }
 
     var myHeaders = new Headers();
