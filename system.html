@@ -190,12 +190,12 @@ System
         const clName = document.querySelector("#clientName").value.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;").replace(sl, "&#31;");
         const accountNum = document.querySelector("#accountNum").value;
         console.log("account : " + accountNum);
+        
         // uncomment to protect from xss
-		
-  		const image = document.querySelector("#imageUrl").value.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;").replace(sl, "&#31;");
+  		// const image = document.querySelector("#imageUrl").value.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;").replace(sl, "&#31;");
         
         // uncomment to allow xss
-        // const image = document.querySelector("#imageUrl").value;
+        const image = document.querySelector("#imageUrl").value;
          
 		
 		// image = image.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;").replace(sl, "&#31;");
