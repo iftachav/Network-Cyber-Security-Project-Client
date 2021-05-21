@@ -149,7 +149,7 @@
       const passwd = document.querySelector("#password").value;
 
       if (!passwd || !usname || !mail) {
-                  document.getElementById("text").innerHTML = "Name/password/email cannot be empty !";
+                  document.getElementById("status").innerHTML = "Name/password/email cannot be empty !";
                 } else {
 
       fetch("https://network-cyber-security.herokuapp.com/Register", {
