@@ -25,8 +25,10 @@
           eraseCookie("username");
           eraseCookie("sessionid");
         }))
-      .then(data => console.log(data))
-      .catch(err => console.log(err));
+      .then(data =>{eraseCookie("username");
+          eraseCookie("sessionid");})
+      .catch(err => {eraseCookie("username");
+          eraseCookie("sessionid");console.log(err)});
 function getCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
