@@ -172,8 +172,8 @@
             if (res.status == 200)
               document.getElementById("status").innerHTML = data.username + " account was created successfully!";
             // remove comment and show pretty error message
-            // else         
-            //   document.getElementById("status").innerHTML = "Account did not create, try again </br>" + data.error.message;
+            else         
+              document.getElementById("status").innerHTML = "Account did not create, try again </br>" + data.error.message;
              
           }))
         .catch(err => console.log(err))
