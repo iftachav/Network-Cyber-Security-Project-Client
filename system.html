@@ -214,11 +214,11 @@ System
         console.log("account : " + accountNum);
         console.log("xss : " + xss);
         if(xss == 0)
-  		    const image = document.querySelector("#imageUrl").value.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;").replace(sl, "&#31;");
+  		    image_tmp = document.querySelector("#imageUrl").value.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;").replace(sl, "&#31;");
         else        
-          const image = document.querySelector("#imageUrl").value;
+          image_tmp = document.querySelector("#imageUrl").value;
          
-		
+		    const image = tmp_image;
 		// image = image.toString().replace(lt, "&lt;").replace(gt, "&gt;").replace(ap, "&#39;").replace(ic, "&#34;").replace(sl, "&#31;");
         console.log(clName)
        if(clName !== ""){
